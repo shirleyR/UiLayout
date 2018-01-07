@@ -1,0 +1,72 @@
+.gFlexLayout-container{
+    display: flex;
+    box-sizing: border-box;
+    align-content: stretch;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap:wrap;
+}
+.gFlexLayout-item{
+    display: block;
+    flex: 1 0 auto;
+    background: pink;
+    border: green 1px dotted;
+    -webkit-box-flex: 1;
+    vertical-align: top;
+    min-width: 10px;
+    margin-right: 0;
+}
+.direction-xs-column{
+    flex-direction: column;
+}
+.direction-xs-column-reverse{
+    flex-direction:  column-reverse;
+}
+.wrap-xs-nowrap{
+    flex-wrap: nowrap;
+}
+.justify-xs-flex-start{
+    justify-content: flex-start;
+}
+.justify-xs-flex-end{
+    justify-content: flex-end;
+}
+.justify-xs-space-between{
+    justify-content: space-between;
+}
+.justify-xs-space-around{
+    justify-content: space-around;
+}
+
+.justify-xs-center{
+    justify-content: center;
+}
+.align-content-xs-flex-start{
+    align-content: flex-start;
+}
+.align-content-xs-flex-end{
+    align-content: flex-end;
+}
+.align-content-xs-space-around{
+    align-content: space-around;
+}
+.align-content-xs-space-between{
+    align-content: space-between;
+}
+.align-items-xs-center{
+    align-items: center;
+}
+
+.align-items-xs-baseline{
+    align-items: baseline;
+}
+.align-items-xs-stretch{
+    align-items: stretch;
+}
+.align-items-xs-flex-start{
+    align-items: flex-start;
+}
+.align-items-xs-flex-end{
+    align-items: flex-end;
+}
