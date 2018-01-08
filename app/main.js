@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../src';
 import { render } from 'react-dom';
 render( <Layout container justify="center" alignItems="flex-end">
-    <Layout item style={{height:"100px"}} >
+    <Layout item xs={6}style={{height:"100px"}} >
         <div>{"Option3"}</div>
     </Layout>
     <Layout item style={{width:"30px"}}>

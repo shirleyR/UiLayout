@@ -1,0 +1,29 @@
+@size: 'xs', 'sm', 'md', 'lg', 'xl';
+@iteration: 12;
+@spacing: 0, 8, 16, 24, 40;
+
+.loop(@index, @breakpoint) when(@index > 0){
+    @flexbasis: round(@index/12* pow(10, 6)) / pow(10, 4);
+    .grid-@{breakpoint}-@{index}{
+        max-width: ~"@{flexbasis}%";
+        flex-basis: ~"@{flexbasis}%"; 
+    }
+    .loop(@index - 1, @breakpoint);
+}
+.loopspacing(@index, @breakpoint) when( @index>0){
+    @currentSpacing: extract(@spacing, @index);
+    .spacing-@{breakpoint}-@{currentSpacing} {
+        margin: -@currentSpacing/2;
+        width: calc(~"100% + @{currentSpacing}px");
+    } 
+    .loopspacing(@index - 1, @breakpoint);
+}
+
+.loopBreakpoint(@i) when(@i > 0){
+    @gridsize: extract(@size, @i);
+    .loopspacing(5, ~"@{gridsize}");
+    .loop(@iteration, ~"@{gridsize}");
+    .loopBreakpoint(@i - 1);
+}
+
+.loopBreakpoint(5);
