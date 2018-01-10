@@ -1,21 +1,84 @@
 @size: 'xs', 'sm', 'md', 'lg', 'xl';
 @iteration: 12;
 @spacing: 0, 8, 16, 24, 40;
+@lg: 1200px;
+@md: 992px;
+@sm: 768px;
 
-.loop(@index, @breakpoint) when(@index > 0){
-    @flexbasis: round(@index/12* pow(10, 6)) / pow(10, 4);
+.xsx(@index, @breakpoint, @flexbasis) when(@breakpoint = 'xs'){
     .grid-@{breakpoint}-@{index}{
         max-width: ~"@{flexbasis}%";
         flex-basis: ~"@{flexbasis}%"; 
+    }
+    .grid-@{breakpoint}{
+        flex:1 0 0;
+        max-width: 100%;
+    }
+}
+.xlg(@index, @breakpoint, @flexbasis)when(@breakpoint ='lg'){
+    @media (min-width: @lg) {
+        // .commonPart(@index, @breakpoint, @flexbasis);
+        .grid-@{breakpoint}-@{index}{
+            max-width: ~"@{flexbasis}%";
+            flex-basis: ~"@{flexbasis}%"; 
+        }
+        .grid-@{breakpoint}{
+            flex:1 0 0;
+            max-width: 100%;
+        }
+    }
+}
+.xsm(@index, @breakpoint, @flexbasis)when(@breakpoint ='sm'){
+    @media (min-width: @sm) {
+        // .commonPart(@index, @breakpoint, @flexbasis);
+        .grid-@{breakpoint}-@{index}{
+            max-width: ~"@{flexbasis}%";
+            flex-basis: ~"@{flexbasis}%"; 
+        }
+        .grid-@{breakpoint}{
+            flex:1 0 0;
+            max-width: 100%;
+        }
+    }
+}
+.xmd(@index, @breakpoint, @flexbasis)when(@breakpoint ='md'){
+    @media (min-width: @md) {
+        // .commonPart(@index, @breakpoint, @flexbasis);
+        .grid-@{breakpoint}-@{index}{
+            max-width: ~"@{flexbasis}%";
+            flex-basis: ~"@{flexbasis}%"; 
+        }
+        .grid-@{breakpoint}{
+            flex:1 0 0;
+            max-width: 100%;
+        }
+    }
+}
+
+.loop(@index, @breakpoint) when(@index > 0){
+    @flexbasis: round(@index/12* pow(10, 6)) / pow(10, 4);
+    // .xmd(@index, @breakpoint, @flexbasis);
+    // .xsx(@index, @breakpoint, @flexbasis);
+    .grid-@{breakpoint}-@{index}{
+        max-width: ~"@{flexbasis}%";
+        flex-basis: ~"@{flexbasis}%"; 
+    }
+    .grid-@{breakpoint}{
+        flex:1 0 0;
+        max-width: 100%;
     }
     .loop(@index - 1, @breakpoint);
 }
 .loopspacing(@index, @breakpoint) when( @index>0){
     @currentSpacing: extract(@spacing, @index);
+    @mG: @currentSpacing/2;
     .spacing-@{breakpoint}-@{currentSpacing} {
-        margin: -@currentSpacing/2;
+        margin: ~"-@{mG}px";
         width: calc(~"100% + @{currentSpacing}px");
-    } 
+        &-item{
+            padding: ~"@{mG}px";
+        }
+    }
     .loopspacing(@index - 1, @breakpoint);
 }
 

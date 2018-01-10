@@ -1,14 +1,15 @@
 import React from 'react';
 import Layout from '../src';
 import { render } from 'react-dom';
-render( <Layout container justify="center" alignItems="flex-end">
-    <Layout item xs={6}style={{height:"100px"}} >
-        <div>{"Option3"}</div>
+import './main.less';
+render( <Layout className="myContainer" container spacing={24} justify="center" alignItems="flex-end">
+    <Layout className="myItem" item xs={2}style={{height:"80px"}} >
+        <div>{"contains 2"}</div>
     </Layout>
-    <Layout item style={{width:"30px"}}>
-         <div>{"Option4"}</div>
+    <Layout  className="myItem" item xs={8}>
+         <div>{"8"}</div>
     </Layout>
-    <Layout item style={{height:"40px"}}>
-        <div>{"Option7"}</div>
+    <Layout className="myItem" xs={2}item style={{height:"80px"}}>
+        <div>{"2"}</div>
     </Layout>
 </Layout>, document.getElementById("root"))

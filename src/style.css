@@ -6,12 +6,11 @@
     justify-content: flex-start;
     align-items: stretch;
     flex-wrap:wrap;
+    width: 100%;
 }
 .gFlexLayout-item{
-    display: block;
-    flex: 1 0 auto;
-    background: pink;
-    border: green 1px dotted;
+    box-sizing: border-box;
+    flex: 0 0 auto;
     -webkit-box-flex: 1;
     vertical-align: top;
     min-width: 10px;

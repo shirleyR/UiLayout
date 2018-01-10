@@ -38,7 +38,9 @@ export default class Layout extends React.Component{
             ['grid']: true,
             ['gFlexLayout-container']: !!container,
             ['gFlexLayout-item']: !!item,
+            ['grid-xs']: xs === true,
             [`spacing-xs-${String(spacing)}`]: container && spacing !== 0,
+            [`spacing-xs-${String(spacing)}-item`]: item && spacing,
             [`direction-xs-${String(direction)}`]: direction !== defaultGridProps.direction,
             [`wrap-xs-${String(wrap)}`]: wrap !== defaultGridProps.wrap,
             [`align-items-xs-${alignItems}`]: alignItems !== defaultGridProps.alignItems,
@@ -46,10 +48,20 @@ export default class Layout extends React.Component{
             [`align-content-xs-${alignContent}`]: alignContent !== defaultGridProps.alignContent,
             [`grid-xs-${String(xs)}`]: xs && xs!== true
         } ,className);
+        let finalLayout = children;
+        if(container){
+            finalLayout = React.Children.map(children, (child)=>{
+                if(React.isValidElement(child)){
+                    return React.cloneElement(child, {
+                        spacing
+                    })
+                }
+            });
+        }
 
         return (
             <div className={containerClass} {...rest}>
-                {children}
+                {finalLayout}
             </div>
         )
     }
