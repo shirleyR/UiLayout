@@ -5,67 +5,48 @@
 @md: 992px;
 @sm: 768px;
 
-.xsx(@index, @breakpoint, @flexbasis) when(@breakpoint = 'xs'){
-    .grid-@{breakpoint}-@{index}{
-        max-width: ~"@{flexbasis}%";
-        flex-basis: ~"@{flexbasis}%"; 
-    }
-    .grid-@{breakpoint}{
+@media(min-width: 1200px){
+    .loop(@iteration, lg);
+    .loopspacing(5, lg);
+    .grid-lg{
         flex:1 0 0;
         max-width: 100%;
     }
 }
-.xlg(@index, @breakpoint, @flexbasis)when(@breakpoint ='lg'){
-    @media (min-width: @lg) {
-        // .commonPart(@index, @breakpoint, @flexbasis);
-        .grid-@{breakpoint}-@{index}{
-            max-width: ~"@{flexbasis}%";
-            flex-basis: ~"@{flexbasis}%"; 
-        }
-        .grid-@{breakpoint}{
-            flex:1 0 0;
-            max-width: 100%;
-        }
+@media(min-width: 992px){
+    .loop(@iteration, md);
+    .loopspacing(5, md);
+    .grid-md{
+        flex:1 0 0;
+        max-width: 100%;
     }
 }
-.xsm(@index, @breakpoint, @flexbasis)when(@breakpoint ='sm'){
-    @media (min-width: @sm) {
-        // .commonPart(@index, @breakpoint, @flexbasis);
-        .grid-@{breakpoint}-@{index}{
-            max-width: ~"@{flexbasis}%";
-            flex-basis: ~"@{flexbasis}%"; 
-        }
-        .grid-@{breakpoint}{
-            flex:1 0 0;
-            max-width: 100%;
-        }
+@media(min-width: 768px){
+    .loop(@iteration, sm);
+    .loopspacing(5, sm);
+    .grid-sm{
+        flex:1 0 0;
+        max-width: 100%;
     }
 }
-.xmd(@index, @breakpoint, @flexbasis)when(@breakpoint ='md'){
-    @media (min-width: @md) {
-        // .commonPart(@index, @breakpoint, @flexbasis);
-        .grid-@{breakpoint}-@{index}{
-            max-width: ~"@{flexbasis}%";
-            flex-basis: ~"@{flexbasis}%"; 
-        }
-        .grid-@{breakpoint}{
-            flex:1 0 0;
-            max-width: 100%;
-        }
-    }
+.grid-xs{
+    flex:1 0 0;
+    max-width: 100%;
 }
+.grid-xl{
+    flex:1 0 0;
+    max-width: 100%;
+}
+.loop(@iteration, xs);
+.loop(@iteration, xl);
+.loopspacing(5, xs);
+.loopspacing(5, xl);
 
 .loop(@index, @breakpoint) when(@index > 0){
     @flexbasis: round(@index/12* pow(10, 6)) / pow(10, 4);
-    // .xmd(@index, @breakpoint, @flexbasis);
-    // .xsx(@index, @breakpoint, @flexbasis);
     .grid-@{breakpoint}-@{index}{
         max-width: ~"@{flexbasis}%";
         flex-basis: ~"@{flexbasis}%"; 
-    }
-    .grid-@{breakpoint}{
-        flex:1 0 0;
-        max-width: 100%;
     }
     .loop(@index - 1, @breakpoint);
 }
@@ -81,12 +62,3 @@
     }
     .loopspacing(@index - 1, @breakpoint);
 }
-
-.loopBreakpoint(@i) when(@i > 0){
-    @gridsize: extract(@size, @i);
-    .loopspacing(5, ~"@{gridsize}");
-    .loop(@iteration, ~"@{gridsize}");
-    .loopBreakpoint(@i - 1);
-}
-
-.loopBreakpoint(5);
