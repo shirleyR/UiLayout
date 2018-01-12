@@ -17,6 +17,36 @@ react layout component
     spacing: 16,
     wrap: 'wrap'
 
+### Support 
+12 grid layout use xs/sm/md/lg/xl
+
+```
+// according to bootstrap 4.0
+
+// https://v4.bootcss.com/docs/4.0/layout/overview/
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.99px) { ... }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.99px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.99px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.99px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+```
+Extraordinary for not mention service size, you can just simple provide className like "grid-6/ grid-12"
+
+**AutoLayout**
+<Layout grid={number} /> We will auto expand the rest space to every sub item.
+
+spacing between the same level items can be set 0, 8, 16, 24, 40.
+
+
 ### Usage
 ```
 <Layout container justify="center" alignContent="flex-start">

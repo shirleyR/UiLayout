@@ -6,6 +6,14 @@
 @sm: 768px;
 
 @media(min-width: 1200px){
+    .loop(@iteration, xl);
+    .loopspacing(5, xl);
+    .grid-xl{
+        flex:1 0 0;
+        max-width: 100%;
+    }
+}
+@media(min-width: 992px) and (max-width: 1199.99px){
     .loop(@iteration, lg);
     .loopspacing(5, lg);
     .grid-lg{
@@ -13,7 +21,7 @@
         max-width: 100%;
     }
 }
-@media(min-width: 992px){
+@media(min-width: 768px) and (max-width: 991.99px){
     .loop(@iteration, md);
     .loopspacing(5, md);
     .grid-md{
@@ -21,7 +29,7 @@
         max-width: 100%;
     }
 }
-@media(min-width: 768px){
+@media(min-width: 576px) and (max-width: 767.99px){
     .loop(@iteration, sm);
     .loopspacing(5, sm);
     .grid-sm{
@@ -29,18 +37,14 @@
         max-width: 100%;
     }
 }
-.grid-xs{
-    flex:1 0 0;
-    max-width: 100%;
+@media(max-width: 575.99px){
+    .grid-xs{
+        flex:1 0 0;
+        max-width: 100%;
+    }
+    .loop(@iteration, xs);
+    .loopspacing(5, xs);
 }
-.grid-xl{
-    flex:1 0 0;
-    max-width: 100%;
-}
-.loop(@iteration, xs);
-.loop(@iteration, xl);
-.loopspacing(5, xs);
-.loopspacing(5, xl);
 
 .loop(@index, @breakpoint) when(@index > 0){
     @flexbasis: round(@index/12* pow(10, 6)) / pow(10, 4);
