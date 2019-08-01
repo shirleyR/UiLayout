@@ -11,9 +11,9 @@ module.exports = {
         filename: 'bundle.js'
     },
     module:{
-        loaders:[
+        rules:[
             {
-                test: /\.js?$/,
+                test: /\.jsx?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
             }, {
@@ -22,7 +22,14 @@ module.exports = {
                 exclude:/node_modules/
             }, {
                 test: /\.less$/,
-                loader: 'style-loader!css-loader!less-loader',
+                use: [{
+                    loader: "style-loader"
+                }, {
+                    loader: "css-loader"
+                }, {
+                    loader: "less-loader"
+                }],
+                // loader: '!css-loader!less-loader',
                 exclude:/node_modules/
             }
         ]
@@ -30,13 +37,9 @@ module.exports = {
     devServer:{
         contentBase: './build',
         historyApiFallback: true,
-        inline:true
+        inline:false
     }
 };
 
-new webpack.DefinePlugin({
-    'process.env':{
-        NODE_ENV: JSON.stringify('production')
-    }
-}),
-new webpack.optimize.UglifyJsPlugin()
+// update webpack https://webpack.js.org/loaders/raw-loader/
+// change keyword from loader to rulse

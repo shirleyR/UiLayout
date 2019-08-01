@@ -32,7 +32,9 @@ export default class Layout extends React.Component{
             grid, 
             justify,
             xs, 
-            children, 
+            children,
+            size, 
+            noneMedia,
             ...rest 
         } = this.props;
         const containerClass = cx({
