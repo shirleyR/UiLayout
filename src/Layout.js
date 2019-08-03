@@ -31,28 +31,41 @@ export default class Layout extends React.Component{
             wrap,
             grid, 
             justify,
-            xs, 
             children,
             size, 
-            noneMedia,
             ...rest 
         } = this.props;
-        const containerClass = cx({
-            ['grid']: true,
+        let classObj = {
             ['gFlexLayout-container']: !!container,
-            ['gFlexLayout-item']: !!item,
-            ['grid']: noneMedia ,
-            [`grid-${String(size)}`]:  noneMedia && size,
-            ['grid-xs']: xs === true,
-            [`spacing-xs-${String(spacing)}`]: container && spacing !== 0,
-            [`spacing-xs-${String(spacing)}-item`]: item && spacing,
-            [`direction-xs-${String(direction)}`]: direction !== defaultGridProps.direction,
-            [`wrap-xs-${String(wrap)}`]: wrap !== defaultGridProps.wrap,
-            [`align-items-xs-${alignItems}`]: alignItems !== defaultGridProps.alignItems,
-            [`justify-xs-${justify}`] : justify !== defaultGridProps.justify,
-            [`align-content-xs-${alignContent}`]: alignContent !== defaultGridProps.alignContent,
-            [`grid-xs-${String(xs)}`]: xs && xs!== true
-        } ,className);
+            ['gFlexLayout-item']: !!item
+        };
+        ["common", "xs", 'sm', 'md', 'lg', 'xl'].forEach((sizeTag) => {
+            const itemTagOrSize = rest[sizeTag];
+            if (typeof itemTagOrSize === 'number') {
+                // child tag value is size, prop is tag
+                const specClass = {
+                    // [`spacing-${sizeTag}-${String(spacing)}`]: container && spacing !== 0,
+                    [`spacing-${sizeTag}-${String(spacing)}-item`]: item && spacing,
+                    [`direction-${sizeTag}-${String(direction)}`]: direction !== defaultGridProps.direction,
+                    [`wrap-${sizeTag}-${String(wrap)}`]: wrap !== defaultGridProps.wrap,
+                    [`align-items-${sizeTag}-${alignItems}`]: alignItems !== defaultGridProps.alignItems,
+                    [`justify-${sizeTag}-${justify}`] : justify !== defaultGridProps.justify,
+                    [`align-content-${sizeTag}-${alignContent}`]: alignContent !== defaultGridProps.alignContent,
+                    [`grid-${sizeTag}-${String(itemTagOrSize)}`]: !!itemTagOrSize 
+                };
+                classObj = {...classObj, ...specClass};
+            } else if(typeof itemTagOrSize === 'boolean' && itemTagOrSize){
+                const specClass = {
+                    [`spacing-${sizeTag}-${String(spacing)}`]: container && spacing !== 0,
+                    [`direction-${sizeTag}-${String(direction)}`]: direction !== defaultGridProps.direction,
+                    [`wrap-${sizeTag}-${String(wrap)}`]: wrap !== defaultGridProps.wrap,
+                    [`justify-${sizeTag}-${justify}`] : justify !== defaultGridProps.justify,
+                    [`align-content-${sizeTag}-${alignContent}`]: alignContent !== defaultGridProps.alignContent
+                };
+                classObj = {...classObj, ...specClass};
+            }
+        });
+        const containerClass = cx(classObj ,className);
         let finalLayout = children;
         if(container){
             finalLayout = React.Children.map(children, (child)=>{
@@ -78,6 +91,7 @@ Layout.propTypes = {
     direction: PropTypes.oneOf(["row", "row-reverse", "column", "column-reverse"]),
     item: PropTypes.bool,
     justify: PropTypes.oneOf(["flex-start", "flex-end", "center", "space-around", "space-between"]),
+    size: PropTypes.string,
     xs: PropTypes.oneOf(gridSize),
     sm: PropTypes.oneOf(gridSize),
     md: PropTypes.oneOf(gridSize),

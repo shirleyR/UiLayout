@@ -1,14 +1,17 @@
-var path = require('path');
+const path = require('path');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    devtool: 'eval-source-map',
-    entry:[
-        path.resolve(__dirname, 'app/main.js')
-    ],
-    output:{
-        path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js'
+    entry: {
+        app: './app/main.js'
     },
+    plugins: [
+        // new CleanWebpackPlugin(),
+        // new HtmlWebpackPlugin({
+        //     title: 'Production'
+        // })
+    ],
     module:{
         rules:[
             {
@@ -33,12 +36,8 @@ module.exports = {
             }
         ]
     },
-    devServer:{
-        contentBase: './build',
-        historyApiFallback: true,
-        inline:false
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist')
     }
 };
-
-// update webpack https://webpack.js.org/loaders/raw-loader/
-// change keyword from loader to rulse

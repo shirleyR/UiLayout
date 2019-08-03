@@ -13,6 +13,34 @@
         max-width: 100%;
     }
 }
+
+.loopNonSpecialDevice(@iteration);
+.loopNonSpecialDeviceSpacing(5);
+.grid{
+    max-width: 100%;
+}
+
+.loopNonSpecialDevice(@index) when(@index > 0){
+    @flexbasis: round(@index/12* pow(10, 6)) / pow(10, 4);
+    .grid-@{index}{
+        max-width: ~"@{flexbasis}%";
+        flex-basis: ~"@{flexbasis}%"; 
+    }
+    .loopNonSpecialDevice(@index - 1);
+}
+.loopNonSpecialDeviceSpacing(@index) when( @index>0){
+    @currentSpacing: extract(@spacing, @index);
+    @mG: @currentSpacing/2;
+    .spacing-@{currentSpacing} {
+        margin: ~"-@{mG}px";
+        width: calc(~"100% + @{currentSpacing}px");
+        &-item{
+            padding: ~"@{mG}px";
+        }
+    }
+    .loopNonSpecialDeviceSpacing(@index - 1);
+}
+
 @media(min-width: 992px) and (max-width: 1199.99px){
     .loop(@iteration, lg);
     .loopspacing(5, lg);
@@ -39,7 +67,7 @@
 }
 @media(max-width: 575.99px){
     .grid-xs{
-        flex:1 0 0;
+        // flex:1 0 0;
         max-width: 100%;
     }
     .loop(@iteration, xs);

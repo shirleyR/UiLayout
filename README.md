@@ -18,7 +18,7 @@ react layout component
     wrap: 'wrap'
 
 ### Support 
-12 grid layout use xs/sm/md/lg/xl
+12 grid layout use xs/sm/md/lg/xl/common
 
 ```
 // according to bootstrap 4.0
@@ -48,6 +48,22 @@ spacing between the same level items can be set 0, 8, 16, 24, 40.
 
 
 ### Usage
+1. with tag xs... and the total size is 12
+```
+<Layout container justify="center" alignContent="flex-start" xs>
+    <Layout item xs={3}>
+     Item1
+    </Layout>
+     <Layout item xs={4}>
+     Item2
+    </Layout> 
+    <Layout item xs={5}>
+    Item3
+    </Layout>
+</Layout>
+
+```
+2. default is equal
 ```
 <Layout container justify="center" alignContent="flex-start">
     <Layout item>
@@ -61,4 +77,20 @@ spacing between the same level items can be set 0, 8, 16, 24, 40.
     </Layout>
 </Layout>
 ```
-### Test
+3. with class tag
+
+```
+<Layout container justify="center" alignContent="flex-start">
+    <Layout item className="grid-4">
+     Item1
+    </Layout>
+     <Layout item>
+     Item2
+    </Layout> 
+    <Layout item>
+    Item3
+    </Layout>
+</Layout>
+```
+
+### Demo

@@ -1,9 +1,14 @@
 .gFlexLayout-container{
     display: flex;
+    display: -webkit-box-flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+
     box-sizing: border-box;
     align-content: stretch;
     flex-direction: row;
-    justify-content: flex-start;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
     align-items: stretch;
     flex-wrap:wrap;
     width: 100%;

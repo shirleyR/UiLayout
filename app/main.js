@@ -2,14 +2,18 @@ import React from 'react';
 import Layout from '../src';
 import { render } from 'react-dom';
 import './main.less';
-render( <Layout className="myContainer" container spacing={24} justify="center" alignItems="flex-end">
-    <Layout className="myItem" item xs={2}style={{height:"80px"}} >
-        <div>{"contains 2"}</div>
+render( 
+<Layout className="container" container spacing={0} xs justify="center" xl={true} alignItems="flex-end">
+    <Layout className="item grid-2" item xs ={5} xl={2}style={{height:"80px"}} >
+        <div>{" xs-5 & xl-2"}</div>
     </Layout>
-    <Layout  className="myItem" item xs={8}>
-         <div>{"8"}</div>
+    <Layout className="item" item xs={2} xl={2}style={{height:"80px"}} >
+        <div>{" xs-2 & xl-2"}</div>
     </Layout>
-    <Layout className="myItem" xs={2}item style={{height:"80px"}}>
-        <div>{"2"}</div>
+    <Layout  className="item" item xs={2} xl={6}>
+         <div>{"xs-2&xl-6"}</div>
+    </Layout>
+    <Layout className="item" xl={2} xs={3}item style={{height:"80px"}}>
+        <div>{"xs-3&xl-2"}</div>
     </Layout>
 </Layout>, document.getElementById("root"))
